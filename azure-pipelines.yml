@@ -11,8 +11,6 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  azureSubscription: 0725ac66-cfb3-4283-9118-d3a836c0f5a9
-  appName: 'hgs036'
 
 steps:
 - script: dotnet build --configuration $(buildConfiguration)
@@ -24,9 +22,11 @@ steps:
     appName: '<Name of web app>'
     appType: webApp
     package: $(System.ArtifactsDirectory)/**/*.zip  
-- task: AzureWebApp@1 # Add this at the end of your file
+
+- task: AzureRmWebAppDeployment@4
   inputs:
-    azureSubscription: $(azureSubscription)
-    appType: webAppLinux
-    appName: $(appName)
-    package: $(System.ArtifactsDirectory)/**/*.zip    
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Pay-as-you-go(0725ac66-cfb3-4283-9118-d3a836c0f5a9)'
+    appType: 'webAppLinux'
+    WebAppName: 'hgs0326'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
