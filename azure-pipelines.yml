@@ -18,8 +18,8 @@ steps:
 
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: '<Azure service connection>'
-    appName: '<Name of web app>'
+    azureSubscription: 'Pay-as-you-go(0725ac66-cfb3-4283-9118-d3a836c0f5a9)'
+    appName: 'hgs0326'
     appType: webApp
     package: $(System.ArtifactsDirectory)/**/*.zip  
 
